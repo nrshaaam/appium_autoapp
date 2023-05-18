@@ -1,0 +1,55 @@
+from appium import webdriver
+from time import sleep
+from appium.webdriver.common.touch_action import TouchAction
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
+
+# Desired capabilities for the Android emulator/device
+desired_caps = {
+    'automationName': 'UiAutomator2',
+    'platformName': 'Android',
+    'deviceName': 'emulator-5554',
+    "app": "/home/norsham/Project/app-uat-debug.apk",
+    'appPackage': 'com.gdex.gdexdrive.uat'
+
+}
+# Create a new Appium session
+driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+
+wait = WebDriverWait(driver, 20)
+
+# Locate the username and password fields by their ids
+username_field = wait.until(EC.presence_of_element_located((By.XPATH, "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.widget.EditText")))
+password_field = wait.until(EC.presence_of_element_located((By.XPATH, "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.widget.EditText")))
+
+
+# Enter the username and password
+username_field.send_keys("tester")
+password_field.send_keys("Abc1234$")
+
+#Login click
+wait.until(EC.visibility_of_element_located((By.XPATH, "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[5]/android.widget.Button"))).click()
+
+# Click the button
+#button.click()
+
+# Find an element by its text
+#button_element = driver.find_element("AppiumBy.TEXT,'LOGIN'")
+#driver.find_element("AppiumBy.XPath,'android.view.ViewGroup[5]'").click()
+
+#driver.find_element(By.XPATH("//android.view.ViewGroup[5]")).click()
+
+#driver.find_element(By.NAME, 'username').click()
+
+#button_element.click()
+
+
+#driver.quit()
+
+
+
+
+
+
